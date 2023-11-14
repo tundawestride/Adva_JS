@@ -1,0 +1,17 @@
+.container {
+    display: flex
+}
+
+#displayAPI {
+    border-color: azure;
+    border-radius: 2%;
+    text-align: center;
+}
+
+p {
+    width: 90%;
+    height: 100px;
+    color: beige;
+    background-color: rgb(103, 162, 103);
+    border-radius: 10%;
+}

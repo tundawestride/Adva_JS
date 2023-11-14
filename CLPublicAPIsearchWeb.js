@@ -1,5 +1,5 @@
 // console.log('test')
-//https://api.publicapis.org/entries?title=...
+//https://api.publicapis.org/entries?title=cat
 
 const formElement = document.querySelector('#searchForm')
 
@@ -16,7 +16,7 @@ async function GetApiDetailByTitle(search) {
     try {
         const titlesearch = { params: { title: search } }
         console.log(titlesearch)
-        const getAPIfromtitlesearch = await axios.get(`https://api.publicapis.org/entries?title`, titlesearch)
+        const getAPIfromtitlesearch = await axios.get(`https://api.publicapis.org/entries`, titlesearch)
         console.log(getAPIfromtitlesearch)
         console.log(getAPIfromtitlesearch.data)
         ShowResultFromAPI(getAPIfromtitlesearch.data)
@@ -28,17 +28,16 @@ async function GetApiDetailByTitle(search) {
 //3. Show results from API detail after searched, using function within for loop (because these data are objects)
 function ShowResultFromAPI(data) {
     if (data.entries !== null) {
-        data.entries.forEach(elementdata => {
-            const dataObjToString = JSON.stringify(elementdata)
-            console.log(dataObjToString)
-            let trDisplay = document.querySelector('#displayAPI')
-            trDisplay.append(dataObjToString)
-        })
+        for (const API of data.entries) {
+            apishow = JSON.stringify(API)
+            //Making display flex card
+            const selectdisplay = document.querySelector('#displayAPI')
+            const cardapi = document.createElement('p')
+            cardapi.append(apishow)
+            selectdisplay.append(cardapi)
+        }
     } else {
         const notfoundtext = 'Not Found API'
         document.body.append(notfoundtext)
     }
 }
-
-
-

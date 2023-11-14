@@ -31,13 +31,14 @@ function ShowResultFromAPI(data) {
     // console.log(data.entries[0]) //Test API detail index 0 
     // console.log(data.entries.length)
     if (data.entries !== null) {
-        data.entries.forEach(elementdata => {
-            const dataObjToString = JSON.stringify(elementdata)
-            // Make data objects to String
-            console.log(dataObjToString)
-            let trDisplay = document.querySelector('#displayAPI')
-            trDisplay.append(dataObjToString)
-        })
+        for (const API of data.entries) {
+            apishow = JSON.stringify(API)
+            //Making display flex card
+            const selectdisplay = document.querySelector('#displayAPI')
+            const cardapi = document.createElement('p')
+            cardapi.append(apishow)
+            selectdisplay.append(cardapi)
+        }
     } else {
         const notfoundtext = 'Not Found API'
         document.body.append(notfoundtext)
